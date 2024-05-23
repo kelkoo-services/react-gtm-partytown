@@ -3,6 +3,7 @@ import Snippets from "./Snippets";
 const TagManager = {
   dataScript: function (dataLayer) {
     const script = document.createElement("script");
+    script.type = "text/partytown";
     script.innerHTML = dataLayer;
     return script;
   },
@@ -16,9 +17,8 @@ const TagManager = {
     };
 
     const script = () => {
-      const script = document.createElement("script", {
-        type: "text/partytown",
-      });
+      const script = document.createElement("script");
+      script.type = "text/partytown";
       script.innerHTML = snippets.script;
       return script;
     };
