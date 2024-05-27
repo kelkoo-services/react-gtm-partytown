@@ -1,7 +1,7 @@
 {
-  "name": "react-gtm-module",
-  "version": "2.0.11",
-  "description": "React Google Tag Manager Module",
+  "name": "@kelisto/react-gtm-partytown",
+  "version": "1.0.0",
+  "description": "React Google Tag Manager partytown",
   "main": "dist/index.js",
   "scripts": {
     "lint": "eslint .",
@@ -10,28 +10,8 @@
     "build": "babel src -d dist --ignore src/__tests__",
     "prepublish": "npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/alinemorelli/react-gtm"
-  },
-  "author": {
-    "name": "Aline Morelli",
-    "email": "aline.morelliw@gmail.com",
-    "url": "https://github.com/alinemorelli"
-  },
+  "author": "Cesar Dublas <cesar.garcia@kelisto.es>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/alinemorelli/react-gtm/issues"
-  },
-  "homepage": "",
-  "keywords": [
-    "react",
-    "reactjs",
-    "react-component",
-    "google tag manager",
-    "tag manager",
-    "gtm"
-  ],
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
@@ -47,5 +27,8 @@
   "jest": {
     "testRegex": "__tests__.*\\.spec.js$",
     "collectCoverage": true
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
