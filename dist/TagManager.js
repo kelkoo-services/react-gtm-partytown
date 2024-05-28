@@ -7,9 +7,9 @@ var _Snippets2 = _interopRequireDefault(_Snippets);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var TagManager = {
-  dataScript: function dataScript(dataLayer) {
+  dataScript: function dataScript(dataLayer, type) {
     var script = document.createElement("script");
-    script.type = "text/partytown";
+    script.type = type ? type : null;
     script.innerHTML = dataLayer;
     return script;
   },
@@ -22,9 +22,9 @@ var TagManager = {
       return noscript;
     };
 
-    var script = function script() {
+    var script = function script(type) {
       var script = document.createElement("script");
-      script.type = "text/partytown";
+      script.type = type ? type : null;
       script.innerHTML = snippets.script;
       return script;
     };
@@ -47,7 +47,8 @@ var TagManager = {
         _ref$auth = _ref.auth,
         auth = _ref$auth === undefined ? "" : _ref$auth,
         _ref$preview = _ref.preview,
-        preview = _ref$preview === undefined ? "" : _ref$preview;
+        preview = _ref$preview === undefined ? "" : _ref$preview,
+        type = _ref.type;
 
     var gtm = this.gtm({
       id: gtmId,
@@ -57,8 +58,8 @@ var TagManager = {
       auth: auth,
       preview: preview
     });
-    if (dataLayer) document.head.appendChild(gtm.dataScript);
-    document.head.insertBefore(gtm.script(), document.head.childNodes[0]);
+    if (dataLayer) document.head.appendChild(gtm.dataScript, type);
+    document.head.insertBefore(gtm.script(type), document.head.childNodes[0]);
     document.body.insertBefore(gtm.noScript(), document.body.childNodes[0]);
   },
   dataLayer: function dataLayer(_ref2) {

@@ -1,9 +1,9 @@
 import Snippets from "./Snippets";
 
 const TagManager = {
-  dataScript: function (dataLayer) {
+  dataScript: function (dataLayer, type) {
     const script = document.createElement("script");
-    script.type = "text/partytown";
+    script.type = type ? type : null;
     script.innerHTML = dataLayer;
     return script;
   },
@@ -16,9 +16,9 @@ const TagManager = {
       return noscript;
     };
 
-    const script = () => {
+    const script = (type) => {
       const script = document.createElement("script");
-      script.type = "text/partytown";
+      script.type = type ? type : null;
       script.innerHTML = snippets.script;
       return script;
     };
@@ -38,6 +38,7 @@ const TagManager = {
     dataLayerName = "dataLayer",
     auth = "",
     preview = "",
+    type,
   }) {
     const gtm = this.gtm({
       id: gtmId,
@@ -47,8 +48,8 @@ const TagManager = {
       auth,
       preview,
     });
-    if (dataLayer) document.head.appendChild(gtm.dataScript);
-    document.head.insertBefore(gtm.script(), document.head.childNodes[0]);
+    if (dataLayer) document.head.appendChild(gtm.dataScript, type);
+    document.head.insertBefore(gtm.script(type), document.head.childNodes[0]);
     document.body.insertBefore(gtm.noScript(), document.body.childNodes[0]);
   },
   dataLayer: function ({ dataLayer, dataLayerName = "dataLayer" }) {
