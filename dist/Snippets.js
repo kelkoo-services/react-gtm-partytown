@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-var _warn = require('./utils/warn');
+var _warn = require("./utils/warn");
 
 var _warn2 = _interopRequireDefault(_warn);
 
@@ -17,14 +17,14 @@ var Snippets = {
         preview = _ref.preview,
         auth = _ref.auth;
 
-    var gtm_auth = '&gtm_auth=' + auth;
-    var gtm_preview = '&gtm_preview=' + preview;
+    var gtm_auth = "&gtm_auth=" + auth;
+    var gtm_preview = "&gtm_preview=" + preview;
 
-    if (!id) (0, _warn2.default)('GTM Id is required');
+    if (!id) (0, _warn2.default)("GTM Id is required");
 
-    var iframe = '\n      <iframe src="https://www.googletagmanager.com/ns.html?id=' + id + gtm_auth + gtm_preview + '&gtm_cookies_win=x"\n        height="0" width="0" style="display:none;visibility:hidden" id="tag-manager"></iframe>';
+    var iframe = "\n      <iframe src=\"https://www.googletagmanager.com/ns.html?id=" + id + gtm_auth + gtm_preview + "&gtm_cookies_win=x\"\n        height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\" id=\"tag-manager\"></iframe>";
 
-    var script = '\n      (function(w,d,s,l,i){w[l]=w[l]||[];\n        w[l].push({\'gtm.start\': new Date().getTime(),event:\'gtm.js\', ' + JSON.stringify(events).slice(1, -1) + '});\n        var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!=\'dataLayer\'?\'&l=\'+l:\'\';\n        j.async=true;j.src=\'https://www.googletagmanager.com/gtm.js?id=\'+i+dl+\'' + gtm_auth + gtm_preview + '&gtm_cookies_win=x\';\n        f.parentNode.insertBefore(j,f);\n      })(window,document,\'script\',\'' + dataLayerName + '\',\'' + id + '\');';
+    var script = "\n      (function(w,d,s,l,i){\n        <!-- Set global property of window for gtm to work -->\n        w['global'] = d;\n        w[l]=w[l]||[];\n        w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js', " + JSON.stringify(events).slice(1, -1) + "});\n        var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';\n        j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl+'" + gtm_auth + gtm_preview + "&gtm_cookies_win=x';\n        f.parentNode.insertBefore(j,f);\n      })(window,document,'script','" + dataLayerName + "','" + id + "');";
 
     var dataLayerVar = this.dataLayer(dataLayer, dataLayerName);
 
@@ -35,7 +35,7 @@ var Snippets = {
     };
   },
   dataLayer: function dataLayer(_dataLayer, dataLayerName) {
-    return '\n      window.' + dataLayerName + ' = window.' + dataLayerName + ' || [];\n      window.' + dataLayerName + '.push(' + JSON.stringify(_dataLayer) + ')';
+    return "\n      window." + dataLayerName + " = window." + dataLayerName + " || [];\n      window." + dataLayerName + ".push(" + JSON.stringify(_dataLayer) + ")";
   }
 };
 
